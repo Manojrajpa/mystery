@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cropin SQL Mystery Game</title>
+    <script src="sql-wasm.js"></script>
+    <style>
+        body { font-family: monospace; background: #1e1e1e; color: #d4d4d4; padding: 20px; }
+        textarea { width: 100%; height: 100px; font-family: monospace; background: #2e2e2e; color: white; padding: 10px; border: none; }
+        button { padding: 10px 20px; background: #007acc; color: white; border: none; cursor: pointer; }
+        pre { background: #252526; padding: 10px; overflow: auto; }
+        .story { margin-bottom: 20px; background: #333; padding: 15px; border-left: 5px solid #007acc; }
+    </style>
+</head>
+<body>
+    <div class="story">
+        <h2>🌾 Cropin SQL Theft Mystery</h2>
+        <p>AgriX, a critical intelligence model, was stolen from Cropin's 5th floor vault on June 6th, 2025. Two witnesses spotted suspicious individuals. Your mission: run SQL queries to uncover the thief.</p>
+        <ul>
+            <li>Customer Success witness: red hair, 155–160cm tall.</li>
+            <li>Security witness: ID includes '011', saw a man with black hair flee to B2 parking in a car with 'T493'.</li>
+            <li>He had a Cult Fit gold gym bag with ID ending in 467.</li>
+        </ul>
+    </div>
+    <textarea id="sql" placeholder="Type your SQL query here..."></textarea><br>
+    <button onclick="executeSQL()">Run SQL</button>
+    <pre id="output"></pre>
+    <script src="init.js"></script>
+</body>
+</html>
