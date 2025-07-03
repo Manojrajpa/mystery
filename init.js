@@ -1,6 +1,6 @@
 let db;
 initSqlJs({ locateFile: file => `sql-wasm.wasm` }).then(SQL => {
-    fetch("cropin_mystery_game_database")
+    fetch("cropin_mystery_game_database.sqlite")
         .then(res => res.arrayBuffer())
         .then(buffer => {
             db = new SQL.Database(new Uint8Array(buffer));
