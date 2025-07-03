@@ -3,99 +3,138 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Cropin SQL Mystery Game</title>
+  <title>SQL THEFT MYSTERY</title>
   <script src="sql-wasm.js"></script>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: #f1f1f1;
-      padding: 20px;
       margin: 0;
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #0b0f1a;
+      color: #f4f4f4;
     }
 
-    h2 {
-      color: #00ffff;
-      margin-top: 0;
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      color: #f4d03f;
+      font-size: 2em;
+      font-weight: bold;
+      border-bottom: 4px solid #f4d03f;
+      letter-spacing: 2px;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
     }
 
     .story {
-      background: rgba(0, 0, 0, 0.6);
-      border-left: 8px solid #00ffff;
+      background-color: #1c1f2a;
+      border-left: 6px solid #f4d03f;
       padding: 20px;
-      margin-bottom: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+    .story h2 {
+      color: #f4d03f;
+      margin-bottom: 10px;
+    }
+
+    .story p, .story ul {
+      line-height: 1.6;
+      font-size: 1.1em;
+    }
+
+    .image-banner {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-bottom: 4px solid #f4d03f;
+    }
+
+    .er-diagram {
+      width: 100%;
+      margin-top: 20px;
+      border: 2px solid #f4d03f;
       border-radius: 10px;
     }
 
     textarea {
       width: 100%;
       height: 100px;
-      font-family: monospace;
       font-size: 16px;
-      background: #222;
-      color: #fff;
+      background-color: #222;
+      color: #0f0;
+      border: 2px solid #f4d03f;
       padding: 10px;
-      border: 2px solid #00ffff;
       border-radius: 10px;
-      margin-bottom: 10px;
     }
 
     button {
-      background: #00ffff;
-      color: #000;
-      padding: 10px 20px;
+      margin-top: 10px;
+      background: #f4d03f;
+      color: #111;
       font-weight: bold;
+      padding: 10px 20px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      margin-bottom: 20px;
+      font-size: 1em;
     }
 
     button:hover {
-      background: #0ff0ff;
+      background-color: #ffe14d;
     }
 
     table {
       width: 100%;
-      border-collapse: collapse;
       margin-top: 20px;
-      background: #1c1c1c;
-      border-radius: 10px;
-      overflow: hidden;
+      border-collapse: collapse;
+      background-color: #121212;
     }
 
     th, td {
-      border: 1px solid #555;
       padding: 10px;
-      text-align: left;
+      border: 1px solid #f4d03f;
     }
 
     th {
-      background: #00ffff;
-      color: #000;
+      background-color: #f4d03f;
+      color: #111;
     }
 
-    .logo {
-      display: block;
-      margin: 20px auto;
-      max-width: 100px;
+    td {
+      color: #0f0;
     }
   </style>
 </head>
 <body>
-  <div class="story">
-    <h2>🕵️ Cropin SQL Theft Mystery</h2>
-    <p>AgriX, a critical intelligence model, was stolen from Cropin's 5th floor vault on June 6th, 2025. Two witnesses spotted suspicious individuals. Your mission: run SQL queries to uncover the thief.</p>
-    <ul>
-      <li>Customer Success witness: red hair, 155–160cm tall.</li>
-      <li>Security witness: ID includes '011', saw a man with black hair flee to B2 parking in a car with 'T493'.</li>
-      <li>He had a Cult Fit gold gym bag with ID ending in 467.</li>
-    </ul>
-  </div>
+  <header>SQL THEFT MYSTERY</header>
+  <img src="Webpage image.png" alt="Detective Image" class="image-banner" />
+  <div class="container">
+    <div class="story">
+      <h2>Case Overview:</h2>
+      <p>AgriX is a highly intelligent, AI-accelerated microchip engineered with advanced parallel processing architecture, capable of executing up to 1,000 concurrent operations in real time with near-zero latency, was reported stolen on 6th June 2025 from River Tech’s highly secure vault located on the 15th Floor. The floor is restricted to very few people.</p>
+      <p>You are the detective hired by River Tech to find out who did this heist? Unfortunately, you’ve the case file but you remember only this information below.</p>
 
-  <textarea id="sql" placeholder="Type your SQL query here..."></textarea><br>
-  <button onclick="executeSQL()">Run SQL</button>
-  <div id="output"></div>
+      <h2>Witness Statements:</h2>
+      <ul>
+        <li>1. A Customer Success team member witnessed someone suspicious. While they couldn’t identify the person by name, they remember that the individual had red hair and a height between 155 cm and 160 cm.</li>
+        <li>2. A security guard (who is also an employee) reported seeing a man with black hair running toward B2 parking and driving off in a car with a number plate containing 'T493', at around 8:00 PM on the same day. The guard's employee ID contains '011'.</li>
+      </ul>
+      <p>The answers to all the questions are in the Database. Find the Entity Relationship schema diagram below to understand how the database is designed and start querying to get to the solution.</p>
+    </div>
+
+    <img src="ER Relationship_1.jpg" alt="Entity Relationship Diagram" class="er-diagram" />
+
+    <textarea id="sql" placeholder="Write your SQL query here..."></textarea><br>
+    <button onclick="executeSQL()">Run SQL</button>
+    <div id="output"></div>
+  </div>
 
   <script src="init.js"></script>
 </body>
