@@ -8,7 +8,7 @@ initSqlJs({ locateFile: file => `sql-wasm.wasm` }).then(SQL => {
         byteArray[i] = binaryString.charCodeAt(i);
     }
     db = new SQL.Database(byteArray);
-    document.getElementById("output").textContent = "🔍 Database loaded. Start querying!";
+    document.getElementById("output").innerHTML = "<p>🔍 Database loaded. Start querying!</p>";
 });
 
 function executeSQL() {
@@ -16,16 +16,27 @@ function executeSQL() {
     let output = "";
     try {
         const results = db.exec(sql);
-        results.forEach(result => {
-            output += result.columns.join(" | ") + "\n";
-            result.values.forEach(row => {
-                output += row.join(" | ") + "\n";
+        if (results.length === 0) {
+            output = "<p>No results.</p>";
+        } else {
+            results.forEach(result => {
+                output += "<table><thead><tr>";
+                result.columns.forEach(col => {
+                    output += `<th>${col}</th>`;
+                });
+                output += "</tr></thead><tbody>";
+                result.values.forEach(row => {
+                    output += "<tr>";
+                    row.forEach(cell => {
+                        output += `<td>${cell}</td>`;
+                    });
+                    output += "</tr>";
+                });
+                output += "</tbody></table>";
             });
-            output += "\n";
-        });
-        if (results.length === 0) output = "No results.";
+        }
     } catch (err) {
-        output = "❌ Error: " + err.message;
+        output = `<p style='color:red;'>❌ Error: ${err.message}</p>`;
     }
-    document.getElementById("output").textContent = output;
+    document.getElementById("output").innerHTML = output;
 }
