@@ -2,140 +2,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>SQL THEFT MYSTERY</title>
-  <script src="sql-wasm.js"></script>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Courier New', Courier, monospace;
-      background-color: #0b0f1a;
-      color: #f4f4f4;
-    }
-
-    header {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      color: #f4d03f;
-      font-size: 2em;
-      font-weight: bold;
-      border-bottom: 4px solid #f4d03f;
-      letter-spacing: 2px;
-    }
-
-    .container {
-      padding: 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .story {
-      background-color: #1c1f2a;
-      border-left: 6px solid #f4d03f;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 20px;
-      margin-bottom: 30px;
-    }
-
-    .story h2 {
-      color: #f4d03f;
-      margin-bottom: 10px;
-    }
-
-    .story p, .story ul {
-      line-height: 1.6;
-      font-size: 1.1em;
-    }
-
-    .image-banner {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      border-bottom: 4px solid #f4d03f;
-    }
-
-    .er-diagram {
-      width: 100%;
-      margin-top: 20px;
-      border: 2px solid #f4d03f;
-      border-radius: 10px;
-    }
-
-    textarea {
-      width: 100%;
-      height: 100px;
-      font-size: 16px;
-      background-color: #222;
-      color: #0f0;
-      border: 2px solid #f4d03f;
-      padding: 10px;
-      border-radius: 10px;
-    }
-
-    button {
-      margin-top: 10px;
-      background: #f4d03f;
-      color: #111;
-      font-weight: bold;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1em;
-    }
-
-    button:hover {
-      background-color: #ffe14d;
-    }
-
-    table {
-      width: 100%;
-      margin-top: 20px;
-      border-collapse: collapse;
-      background-color: #121212;
-    }
-
-    th, td {
-      padding: 10px;
-      border: 1px solid #f4d03f;
-    }
-
-    th {
-      background-color: #f4d03f;
-      color: #111;
-    }
-
-    td {
-      color: #0f0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>SQL HEIST MYSTERY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Special Elite', monospace;
+            background-color: #1e1e1e;
+            color: #f8f8f2;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ffc107;
+        }
+        .case-overview {
+            max-width: 900px;
+            margin: auto;
+            background-color: #2e2e2e;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px #000;
+        }
+        .case-overview img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .schema-img {
+            display: block;
+            margin: 20px auto;
+            width: 50%;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            background-color: #333;
+            color: #fff;
+            font-size: 16px;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 16px;
+            background-color: #ffc107;
+            color: black;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        #results {
+            white-space: pre-wrap;
+            background-color: #121212;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+        }
+    </style>
 </head>
 <body>
-  <header>SQL THEFT MYSTERY</header>
-  <img src="Webpage image.png" alt="Detective Image" class="image-banner" />
-  <div class="container">
-    <div class="story">
-      <h2>Case Overview:</h2>
-      <p>AgriX is a highly intelligent, AI-accelerated microchip engineered with advanced parallel processing architecture, capable of executing up to 1,000 concurrent operations in real time with near-zero latency, was reported stolen on 6th June 2025 from River Tech’s highly secure vault located on the 15th Floor. The floor is restricted to very few people.</p>
-      <p>You are the detective hired by River Tech to find out who did this heist? Unfortunately, you’ve the case file but you remember only this information below.</p>
-
-      <h2>Witness Statements:</h2>
-      <ul>
-        <li>1. A Customer Success team member witnessed someone suspicious. While they couldn’t identify the person by name, they remember that the individual had red hair and a height between 155 cm and 160 cm.</li>
-        <li>2. A security guard (who is also an employee) reported seeing a man with black hair running toward B2 parking and driving off in a car with a number plate containing 'T493', at around 8:00 PM on the same day. The guard's employee ID contains '011'.</li>
-      </ul>
-      <p>The answers to all the questions are in the Database. Find the Entity Relationship schema diagram below to understand how the database is designed and start querying to get to the solution.</p>
+    <header>SQL HEIST MYSTERY</header>
+    <div class="case-overview">
+        <img src="Webpage image.png" alt="Case banner">
+        <h2>Case Overview:</h2>
+        <p><strong>Hello Detective,</strong></p>
+        <p>AgriX is a highly intelligent, AI-accelerated microchip engineered with advanced parallel processing architecture, capable of executing up to 1,000 concurrent operations in real time with near-zero latency, was reported stolen on 6th June 2025 from River Tech’s highly secure vault located on the 15th Floor. The floor is restricted to very few employees.</p>
+        <p>You are the detective hired by River Tech to find out who did this heist? Unfortunately, you’ve lost the case file but you vaguely remember there were 2 witnesses:</p>
+        <ul>
+            <li>A Customer Success team member who lives somewhere in Koramangala, had red hair and a height between 155 cm and 160 cm.</li>
+            <li>A security guard who has ID which includes 011 and he is 173 cm tall who lives in JP Nagar.</li>
+        </ul>
+        <p><strong>Firstly find these 2 witnesses and get their interviews to start your case.</strong></p>
+        <p><em>Note: The answers to all the questions are in the Database. Find the Entity Relationship schema diagram below to understand how the database is designed. Start querying to get to the solution.</em></p>
+        <img src="er_schema_small.jpg" alt="ER Diagram" class="schema-img">
     </div>
 
-    <img src="ER Relationship_1.jpg" alt="Entity Relationship Diagram" class="er-diagram" />
+    <textarea id="sql-input">SELECT * FROM employee LIMIT 10;</textarea><br>
+    <button onclick="runSQL()">Run SQL</button>
+    <pre id="results"></pre>
 
-    <textarea id="sql" placeholder="Write your SQL query here..."></textarea><br>
-    <button onclick="executeSQL()">Run SQL</button>
-    <div id="output"></div>
-  </div>
-
-  <script src="init.js"></script>
+    <script src="sql-wasm.js"></script>
+    <script src="sql-wasm.wasm" type="wasm"></script>
+    <script src="init.js"></script>
 </body>
 </html>
