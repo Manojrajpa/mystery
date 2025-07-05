@@ -4,7 +4,7 @@ let currentPage = 0;
 const rowsPerPage = 50;
 
 initSqlJs({ locateFile: file => `sql-wasm.wasm` }).then(SQL => {
-    fetch("cropin_mystery_game_database.sqlite.db").then(res => res.arrayBuffer()).then(data => {
+    fetch("mrpa4634xsw.sqlite.db").then(res => res.arrayBuffer()).then(data => {
         db = new SQL.Database(new Uint8Array(data));
     });
 });
