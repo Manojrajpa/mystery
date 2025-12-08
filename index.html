@@ -95,7 +95,7 @@
         #notetaker {
             position: fixed;
             right: 20px;
-            top: 50%;
+            top: 200px;
             width: 300px;
             background-color: #1e1e1e;
             border: 1px solid #444;
@@ -223,10 +223,11 @@
                 if (e.target.tagName === 'TEXTAREA') {
                     return;
                 }
-                initialX = e.clientX - xOffset;
-                initialY = e.clientY - yOffset;
-
+                
                 if (e.target === header || header.contains(e.target)) {
+                    const rect = notetaker.getBoundingClientRect();
+                    initialX = e.clientX - rect.left;
+                    initialY = e.clientY - rect.top;
                     isDragging = true;
                     notetaker.classList.add('dragging');
                 }
@@ -238,31 +239,17 @@
                     currentX = e.clientX - initialX;
                     currentY = e.clientY - initialY;
 
-                    xOffset = currentX;
-                    yOffset = currentY;
-
-                    setTranslate(currentX, currentY, notetaker);
+                    // Use left and top instead of transform for better control
+                    notetaker.style.right = 'auto';
+                    notetaker.style.left = currentX + 'px';
+                    notetaker.style.top = currentY + 'px';
                 }
             }
 
             function dragEnd(e) {
-                initialX = currentX;
-                initialY = currentY;
                 isDragging = false;
                 notetaker.classList.remove('dragging');
             }
-
-            function setTranslate(xPos, yPos, el) {
-                el.style.transform = `translate(${xPos}px, ${yPos}px)`;
-            }
-
-            // Initialize position (centered vertically on the right side)
-            window.addEventListener('load', function() {
-                const rect = notetaker.getBoundingClientRect();
-                xOffset = window.innerWidth - rect.width - 20;
-                yOffset = (window.innerHeight / 2) - (rect.height / 2) - rect.top;
-                setTranslate(xOffset, yOffset, notetaker);
-            });
         })();
     </script>
 </body>
