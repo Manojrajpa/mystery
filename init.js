@@ -11,6 +11,7 @@ initSqlJs({ locateFile: file => `sql-wasm.wasm` }).then(SQL => {
 
 document.getElementById("run-sql").addEventListener("click", () => {
     const sql = document.getElementById("editor").value;
+    window.parent.postMessage(sql, '*');
     try {
         results = db.exec(sql);
         currentPage = 0;
