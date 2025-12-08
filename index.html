@@ -92,6 +92,49 @@
             background-color: #ffc107;
             color: black;
         }
+        #notetaker {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            width: 300px;
+            background-color: #1e1e1e;
+            border: 1px solid #444;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+        #notetaker-header {
+            background-color: #2d2d2d;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            cursor: move;
+            border-bottom: 1px solid #444;
+            user-select: none;
+        }
+        #notetaker-header h3 {
+            margin: 0;
+            font-size: 14px;
+            color: #ffc107;
+        }
+        #notetaker-content {
+            padding: 10px;
+        }
+        #notetaker textarea {
+            width: 100%;
+            min-height: 200px;
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+            font-size: 14px;
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            font-family: 'Special Elite', monospace;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        #notetaker.dragging {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
@@ -148,7 +191,79 @@
         <div id="pagination"></div>
     </div>
 
+    <div id="notetaker">
+        <div id="notetaker-header">
+            <h3>📝 Notes</h3>
+        </div>
+        <div id="notetaker-content">
+            <textarea id="notes" placeholder="Take notes here..."></textarea>
+        </div>
+    </div>
+
     <script src="sql-wasm.js"></script>
     <script src="init.js"></script>
+    <script>
+        // Draggable notetaker functionality
+        (function() {
+            const notetaker = document.getElementById('notetaker');
+            const header = document.getElementById('notetaker-header');
+            let isDragging = false;
+            let currentX;
+            let currentY;
+            let initialX;
+            let initialY;
+            let xOffset = 0;
+            let yOffset = 0;
+
+            header.addEventListener('mousedown', dragStart);
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', dragEnd);
+
+            function dragStart(e) {
+                if (e.target.tagName === 'TEXTAREA') {
+                    return;
+                }
+                initialX = e.clientX - xOffset;
+                initialY = e.clientY - yOffset;
+
+                if (e.target === header || header.contains(e.target)) {
+                    isDragging = true;
+                    notetaker.classList.add('dragging');
+                }
+            }
+
+            function drag(e) {
+                if (isDragging) {
+                    e.preventDefault();
+                    currentX = e.clientX - initialX;
+                    currentY = e.clientY - initialY;
+
+                    xOffset = currentX;
+                    yOffset = currentY;
+
+                    setTranslate(currentX, currentY, notetaker);
+                }
+            }
+
+            function dragEnd(e) {
+                initialX = currentX;
+                initialY = currentY;
+                isDragging = false;
+                notetaker.classList.remove('dragging');
+            }
+
+            function setTranslate(xPos, yPos, el) {
+                el.style.transform = `translate(${xPos}px, ${yPos}px)`;
+            }
+
+            // Initialize position (centered vertically on the right side)
+            window.addEventListener('load', function() {
+                const rect = notetaker.getBoundingClientRect();
+                xOffset = window.innerWidth - rect.width - 20;
+                yOffset = (window.innerHeight / 2) - (rect.height / 2) - rect.top;
+                setTranslate(xOffset, yOffset, notetaker);
+            });
+        })();
+    </script>
 </body>
 </html>
