@@ -251,6 +251,16 @@
                 notetaker.classList.remove('dragging');
             }
         })();
+
+        // Persist notetaker contents across reloads via localStorage
+        (function() {
+            const notes = document.getElementById('notes');
+            const saved = localStorage.getItem('mystery-notes');
+            if (saved) notes.value = saved;
+            notes.addEventListener('input', () => {
+                localStorage.setItem('mystery-notes', notes.value);
+            });
+        })();
     </script>
 </body>
 </html>
