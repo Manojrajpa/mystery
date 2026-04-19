@@ -261,6 +261,22 @@
                 localStorage.setItem('mystery-notes', notes.value);
             });
         })();
+
+        // Allow parent app to clear notes via postMessage
+        window.addEventListener('message', function (e) {
+            var allowed = [
+                'https://assessment.suvita.org',
+                'http://localhost:5000',
+                'http://127.0.0.1:5000'
+            ];
+            if (allowed.indexOf(e.origin) === -1) return;
+            if (!e.data || e.data.source !== 'suvita-assessment' || e.data.action !== 'clearMysteryNotes') return;
+            try {
+                localStorage.removeItem(e.data.key || 'mystery-notes');
+                var notes = document.getElementById('notes');
+                if (notes) notes.value = '';
+            } catch (err) {}
+        });
     </script>
 </body>
 </html>
